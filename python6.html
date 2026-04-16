@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Código Python (estilo IDLE)</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    pre {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      overflow-x: auto;
+      font-family: "Courier New", monospace;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* Estilo tipo IDLE */
+    .keyword { color: #ff7700; font-weight: bold; }
+    .string { color: #00aa00; }
+    .comment { color: #999999; font-style: italic; }
+    .number { color: #0000ff; }
+    .builtin { color: #900090; }
+  </style>
+</head>
+<body>
+
+<h1>Código Python</h1>
+
+<pre><code>
+<span class="builtin">nome</span>=<span class="string">"Rui Pedro"</span>
+<span class="builtin">cidade</span>=<span class="string">"Odivelas"</span>
+<span class="builtin">escola</span>=<span class="string">"Avelar Brotero"</span>
+<span class="builtin">turma</span>=<span class="string">"exmplo: 6A"</span>
+<span class="builtin">print</span>(nome)
+<span class="builtin">print</span>(cidade)
+<span class="builtin">print</span>(escola)
+<span class="builtin">print</span>(turma)
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">100</span>):
+    <span class="builtin">print</span>(nome, i)
+
+<span class="comment">#-----------------------------------</span>
+<span class="comment"># programa_1.py</span>
+<span class="builtin">print</span>(<span class="string">"1==2 é: "</span>, <span class="number">1</span> == <span class="number">2</span>)
+<span class="builtin">print</span>(<span class="string">"2>3 é: "</span>, <span class="number">2</span> &gt; <span class="number">3</span>)
+<span class="builtin">print</span>(<span class="string">"o meu nome é Tulipa -&gt; "</span>, nome == <span class="string">"Tulipa"</span>)
+<span class="builtin">print</span>(<span class="string">"o meu nome não é Tulipa -&gt; "</span>, nome != <span class="string">"Tulipa"</span>)
+<span class="builtin">print</span>(<span class="string">"A minha escola é a Avelar Brotero -&gt; "</span>, escola == <span class="string">"Avelar Brotero"</span>)
+
+<span class="comment">#-----------------------------------</span>
+<span class="comment"># programa_2.py</span>
+idade=<span class="builtin">input</span>(<span class="string">"Qual é a tua idade?"</span>)
+idade = <span class="builtin">int</span>(idade)
+
+<span class="keyword">if</span> idade == <span class="number">10</span>:
+    <span class="builtin">print</span>(<span class="string">"Tens 10 anos"</span>)
+<span class="keyword">elif</span> idade &gt; <span class="number">10</span>:
+    <span class="builtin">print</span>(<span class="string">"Tens mais de 10 anos"</span>)
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"Tens menos de 10 anos"</span>)
+
+<span class="comment">#---------------------------------------</span>
+<span class="comment"># programa_3.py</span>
+<span class="keyword">import</span> random
+jogadas = [<span class="string">"pedra"</span>, <span class="string">"papel"</span>, <span class="string">"tesoura"</span>]
+jog_comp = random.choice(jogadas)
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="builtin">print</span>(<span class="string">"Podes escolher: pedra, papel ou tesoura."</span>)
+    jog_hum = <span class="builtin">input</span>(<span class="string">"Qual escolhes?"</span>)
+    <span class="keyword">if</span> jog_hum <span class="keyword">in</span> jogadas:
+        <span class="keyword">break</span>
+    <span class="keyword">else</span>:
+        <span class="builtin">print</span>(f<span class="string">"{jog_hum} não é uma jogada válida. Tenta outra vez."</span>)
+        <span class="builtin">print</span>()
+
+<span class="builtin">print</span>(f<span class="string">"Eu joguei {jog_comp} e tu jogaste {jog_hum}."</span>)
+</code></pre>
+
+</body>
+</html>
