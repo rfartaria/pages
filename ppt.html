@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula de Python: Pedra, Papel, Tesoura</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        h1 { color: #000; border-bottom: 3px solid #0078d7; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 40px; background: #f0f7ff; padding: 5px 15px; border-radius: 5px; }
+        
+        /* Estilo IDLE Python */
+        .idle-code {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 20px;
+            border: 1px solid #d3d3d3;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em; /* Maior para o projetor */
+            font-weight: bold;
+            white-space: pre;
+            margin-bottom: 30px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .comment { color: #dd0000; font-weight: normal; } /* Vermelho/Castanho no IDLE clássico */
+        .keyword { color: #ff7700; } /* Laranja para import, if, while */
+        .string { color: #00aa00; }  /* Verde para texto */
+        .builtin { color: #900090; } /* Roxo para print, input, range */
+        .normal { color: #000000; }
+    </style>
+</head>
+<body>
+
+    <h1>Guia de Programação: Pedra, Papel ou Tesoura</h1>
+
+    <h2>Bloco 1: Início e Variáveis</h2>
+    <div class="idle-code">
+<span class="keyword">import</span> random
+
+<span class="comment"># 1. Definir as jogadas</span>
+jogadas = [<span class="string">"pedra"</span>, <span class="string">"papel"</span>, <span class="string">"tesoura"</span>]
+
+<span class="builtin">print</span>()
+<span class="builtin">print</span>(<span class="string">"--- JOGO: PEDRA, PAPEL OU TESOURA ---"</span>)</div>
+
+    <h2>Bloco 2: O Ciclo de Escolha (Loop)</h2>
+    <div class="idle-code">
+<span class="keyword">while True</span>:
+    <span class="builtin">print</span>(<span class="string">"Podes jogar: pedra, papel ou tesoura."</span>)
+    jogada_utilizador = <span class="builtin">input</span>(<span class="string">"Escreve a tua escolha: "</span>)
+    
+    <span class="comment"># passar para minúsculas</span>
+    jogada_utilizador = jogada_utilizador.lower()
+    
+    <span class="keyword">if</span> jogada_utilizador <span class="keyword">in</span> jogadas:
+        <span class="keyword">break</span>
+    <span class="keyword">else</span>:
+        <span class="builtin">print</span>(<span class="string">"Escolha inválida. Tenta novamente."</span>)</div>
+
+    <h2>Bloco 3: A Lógica do Computador</h2>
+    <div class="idle-code">
+jogada_computador = random.choice(jogadas)
+
+<span class="builtin">print</span>()
+<span class="builtin">print</span>(<span class="string">"Tu escolheste:"</span>, jogada_utilizador)
+<span class="builtin">print</span>(<span class="string">"O computador escolheu:"</span>, jogada_computador)</div>
+
+    <h2>Bloco 4: Condições de Vitória</h2>
+    <div class="idle-code">
+<span class="keyword">if</span> jogada_utilizador == jogada_computador:
+    <span class="builtin">print</span>(<span class="string">"Resultado: Empataram!"</span>)
+
+<span class="keyword">elif</span> jogada_utilizador == <span class="string">"pedra"</span> <span class="keyword">and</span> jogada_computador == <span class="string">"tesoura"</span>:
+    <span class="builtin">print</span>(<span class="string">"Resultado: Tu ganhaste!"</span>)
+
+<span class="keyword">elif</span> jogada_utilizador == <span class="string">"papel"</span> <span class="keyword">and</span> jogada_computador == <span class="string">"pedra"</span>:
+    <span class="builtin">print</span>(<span class="string">"Resultado: Tu ganhaste!"</span>)
+
+<span class="keyword">elif</span> jogada_utilizador == <span class="string">"tesoura"</span> <span class="keyword">and</span> jogada_computador == <span class="string">"papel"</span>:
+    <span class="builtin">print</span>(<span class="string">"Resultado: Tu ganhaste!"</span>)
+
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"Resultado: O computador ganhou!"</span>)</div>
+
+</body>
+</html>
