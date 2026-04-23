@@ -1,0 +1,175 @@
+Com certeza, professor! Esta versão é muito interessante para mostrar como uma **variável booleana** (`True`/`False`) pode mudar o comportamento do programa silenciosamente. Assim que o utilizador digita "cheat", o computador passa a escolher sempre a jogada perdedora.
+
+Aqui tens a página HTML com o bloco único, as cores do IDLE e o botão de cópia:
+
+```html
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Python 6º Ano: Versão Final com Cheat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        h1 { color: #000; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
+        p { font-size: 1.1em; }
+        
+        .container-codigo {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .idle-code {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 25px;
+            border: 1px solid #d3d3d3;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+            white-space: pre;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        /* Cores Estilo IDLE */
+        .comment { color: #dd0000; font-weight: normal; }
+        .keyword { color: #ff7700; }
+        .string { color: #00aa00; }
+        .builtin { color: #900090; }
+
+        /* Botão Copiar */
+        .btn-copiar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-copiar:hover { background-color: #c0392b; }
+        .btn-copiar.sucesso { background-color: #27ae60; }
+    </style>
+</head>
+<body>
+
+    <h1>Desafio Final: Pedra, Papel, Tesoura + "Cheat Mode"</h1>
+    <p>Copia o código completo abaixo para o teu editor e tenta descobrir como ativar o modo batota!</p>
+
+    <div class="container-codigo">
+        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Código Completo</button>
+        <div class="idle-code"><span class="keyword">import</span> random
+
+<span class="comment"># 1. Definir as jogadas</span>
+jogadas = [<span class="string">"pedra"</span>, <span class="string">"papel"</span>, <span class="string">"tesoura"</span>]
+
+<span class="comment"># Variáveis para guardar os pontos</span>
+vitorias_utilizador = 0
+vitorias_computador = 0
+empates = 0
+
+cheat = <span class="keyword">False</span>
+
+<span class="builtin">print</span>()
+<span class="builtin">print</span>(<span class="string">"--- JOGO: PEDRA, PAPEL OU TESOURA ---"</span>)
+
+<span class="keyword">while True</span>: <span class="comment"># Loop para jogar várias vezes</span>
+    <span class="keyword">while True</span>: <span class="comment"># Loop para validação da jogada</span>
+        <span class="builtin">print</span>()
+        <span class="builtin">print</span>(<span class="string">"================================"</span>)
+        <span class="builtin">print</span>(<span class="string">"Podes jogar: pedra, papel ou tesoura."</span>)
+        jogada_utilizador = <span class="builtin">input</span>(<span class="string">"Escreve a tua escolha (ou 'sair'): "</span>)
+        
+        jogada_utilizador = jogada_utilizador.lower()
+
+        <span class="comment"># Verificar se o utilizador quer terminar o programa</span>
+        <span class="keyword">if</span> jogada_utilizador <span class="keyword">in</span> [<span class="string">"sair"</span>, <span class="string">"exit"</span>, <span class="string">"q"</span>, <span class="string">"x"</span>]:
+            <span class="builtin">print</span>(<span class="string">"\nObrigado por jogar! Até à próxima.\n"</span>)
+            exit()
+
+        <span class="keyword">if</span> jogada_utilizador == <span class="string">"cheat"</span>:
+            cheat = <span class="keyword">True</span>
+        
+        <span class="keyword">if</span> jogada_utilizador <span class="keyword">in</span> jogadas:
+            <span class="keyword">break</span>
+        <span class="keyword">else</span>:
+            <span class="builtin">print</span>(<span class="string">"Escolha inválida. Tenta novamente."</span>)
+
+
+    jogada_computador = random.choice(jogadas)
+
+    <span class="keyword">if</span> cheat:
+        <span class="keyword">if</span> jogada_utilizador == <span class="string">"pedra"</span>:
+            jogada_computador = <span class="string">"tesoura"</span>
+        <span class="keyword">elif</span> jogada_utilizador == <span class="string">"papel"</span>:
+            jogada_computador = <span class="string">"pedra"</span>
+        <span class="keyword">elif</span> jogada_utilizador == <span class="string">"tesoura"</span>:
+            jogada_computador = <span class="string">"papel"</span>
+
+    <span class="builtin">print</span>()
+    <span class="builtin">print</span>(<span class="string">"Tu escolheste:"</span>, jogada_utilizador)
+    <span class="builtin">print</span>(<span class="string">"O computador escolheu:"</span>, jogada_computador)
+
+
+    <span class="keyword">if</span> jogada_utilizador == jogada_computador:
+        <span class="builtin">print</span>(<span class="string">"Resultado: Empataram!"</span>)
+        empates += 1
+
+    <span class="keyword">elif</span> jogada_utilizador == <span class="string">"pedra"</span> <span class="keyword">and</span> jogada_computador == <span class="string">"tesoura"</span>:
+        <span class="builtin">print</span>(<span class="string">"Resultado: Tu ganhaste!"</span>)
+        vitorias_utilizador += 1
+
+    <span class="keyword">elif</span> jogada_utilizador == <span class="string">"papel"</span> <span class="keyword">and</span> jogada_computador == <span class="string">"pedra"</span>:
+        <span class="builtin">print</span>(<span class="string">"Resultado: Tu ganhaste!"</span>)
+        vitorias_utilizador += 1
+
+    <span class="keyword">elif</span> jogada_utilizador == <span class="string">"tesoura"</span> <span class="keyword">and</span> jogada_computador == <span class="string">"papel"</span>:
+        <span class="builtin">print</span>(<span class="string">"Resultado: Tu ganhaste!"</span>)
+        vitorias_utilizador += 1
+
+    <span class="keyword">else</span>:
+        <span class="builtin">print</span>(<span class="string">"Resultado: O computador ganhou!"</span>)
+        vitorias_computador += 1
+
+
+    <span class="builtin">print</span>()
+    <span class="builtin">print</span>(<span class="string">"--- PLACAR ATUAL ---"</span>)
+    <span class="builtin">print</span>(<span class="string">"Vitórias Utilizador:"</span>, vitorias_utilizador)
+    <span class="builtin">print</span>(<span class="string">"Vitórias Computador:"</span>, vitorias_computador)
+    <span class="builtin">print</span>(<span class="string">"Empates:"</span>, empates)</div>
+    </div>
+
+    <script>
+        function copiarCodigo(botao) {
+            const codigoDiv = botao.nextElementSibling;
+            const textoParaCopiar = codigoDiv.innerText;
+
+            navigator.clipboard.writeText(textoParaCopiar).then(() => {
+                const textoOriginal = botao.innerText;
+                botao.innerText = "Copiado com Sucesso!";
+                botao.classList.add("sucesso");
+
+                setTimeout(() => {
+                    botao.innerText = textoOriginal;
+                    botao.classList.remove("sucesso");
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
+```
