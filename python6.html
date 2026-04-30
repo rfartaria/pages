@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Código Python (estilo IDLE)</title>
+  <title>Código Python por Blocos</title>
 
   <style>
     body {
@@ -15,18 +15,52 @@
       color: #333;
     }
 
-    pre {
+    .bloco {
       background: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
       border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .cabecalho-bloco {
+      background: #e8e8e8;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .cabecalho-bloco h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    pre {
+      margin: 0;
+      padding: 20px;
       overflow-x: auto;
       font-family: "Courier New", monospace;
       font-size: 15px;
       line-height: 1.5;
     }
 
-    /* Estilo tipo IDLE */
     .keyword { color: #ff7700; font-weight: bold; }
     .string { color: #00aa00; }
     .comment { color: #999999; font-style: italic; }
@@ -34,34 +68,58 @@
     .builtin { color: #900090; }
   </style>
 </head>
+
 <body>
 
 <h1>Código Python</h1>
 
-<pre><code>
-<span class="builtin">nome</span>=<span class="string">"Rui Pedro"</span>
+<div class="bloco">
+  <div class="cabecalho-bloco">
+    <h2>Bloco 1 — Variáveis e print</h2>
+    <button onclick="copiarCodigo('codigo1')">Copiar</button>
+  </div>
+
+  <pre><code id="codigo1"><span class="builtin">nome</span>=<span class="string">"Rui Pedro"</span>
 <span class="builtin">cidade</span>=<span class="string">"Odivelas"</span>
 <span class="builtin">escola</span>=<span class="string">"Avelar Brotero"</span>
 <span class="builtin">turma</span>=<span class="string">"exmplo: 6A"</span>
+
 <span class="builtin">print</span>(nome)
 <span class="builtin">print</span>(cidade)
 <span class="builtin">print</span>(escola)
-<span class="builtin">print</span>(turma)
+<span class="builtin">print</span>(turma)</code></pre>
+</div>
 
-<span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">100</span>):
-    <span class="builtin">print</span>(nome, i)
+<div class="bloco">
+  <div class="cabecalho-bloco">
+    <h2>Bloco 2 — Ciclo for</h2>
+    <button onclick="copiarCodigo('codigo2')">Copiar</button>
+  </div>
 
-<span class="comment">#-----------------------------------</span>
-<span class="comment"># programa_1.py</span>
-<span class="builtin">print</span>(<span class="string">"1==2 é: "</span>, <span class="number">1</span> == <span class="number">2</span>)
-<span class="builtin">print</span>(<span class="string">"2>3 é: "</span>, <span class="number">2</span> &gt; <span class="number">3</span>)
+  <pre><code id="codigo2"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">100</span>):
+    <span class="builtin">print</span>(nome, i)</code></pre>
+</div>
+
+<div class="bloco">
+  <div class="cabecalho-bloco">
+    <h2>Bloco 3 — Comparações</h2>
+    <button onclick="copiarCodigo('codigo3')">Copiar</button>
+  </div>
+
+  <pre><code id="codigo3"><span class="builtin">print</span>(<span class="string">"1==2 é: "</span>, <span class="number">1</span> == <span class="number">2</span>)
+<span class="builtin">print</span>(<span class="string">"2&gt;3 é: "</span>, <span class="number">2</span> &gt; <span class="number">3</span>)
 <span class="builtin">print</span>(<span class="string">"o meu nome é Tulipa -&gt; "</span>, nome == <span class="string">"Tulipa"</span>)
 <span class="builtin">print</span>(<span class="string">"o meu nome não é Tulipa -&gt; "</span>, nome != <span class="string">"Tulipa"</span>)
-<span class="builtin">print</span>(<span class="string">"A minha escola é a Avelar Brotero -&gt; "</span>, escola == <span class="string">"Avelar Brotero"</span>)
+<span class="builtin">print</span>(<span class="string">"A minha escola é a Avelar Brotero -&gt; "</span>, escola == <span class="string">"Avelar Brotero"</span>)</code></pre>
+</div>
 
-<span class="comment">#-----------------------------------</span>
-<span class="comment"># programa_2.py</span>
-idade=<span class="builtin">input</span>(<span class="string">"Qual é a tua idade?"</span>)
+<div class="bloco">
+  <div class="cabecalho-bloco">
+    <h2>Bloco 4 — Condições if / elif / else</h2>
+    <button onclick="copiarCodigo('codigo4')">Copiar</button>
+  </div>
+
+  <pre><code id="codigo4">idade=<span class="builtin">input</span>(<span class="string">"Qual é a tua idade?"</span>)
 idade = <span class="builtin">int</span>(idade)
 
 <span class="keyword">if</span> idade == <span class="number">10</span>:
@@ -69,25 +127,42 @@ idade = <span class="builtin">int</span>(idade)
 <span class="keyword">elif</span> idade &gt; <span class="number">10</span>:
     <span class="builtin">print</span>(<span class="string">"Tens mais de 10 anos"</span>)
 <span class="keyword">else</span>:
-    <span class="builtin">print</span>(<span class="string">"Tens menos de 10 anos"</span>)
+    <span class="builtin">print</span>(<span class="string">"Tens menos de 10 anos"</span>)</code></pre>
+</div>
 
-<span class="comment">#---------------------------------------</span>
-<span class="comment"># programa_3.py</span>
-<span class="keyword">import</span> random
+<div class="bloco">
+  <div class="cabecalho-bloco">
+    <h2>Bloco 5 — Jogo pedra, papel ou tesoura</h2>
+    <button onclick="copiarCodigo('codigo5')">Copiar</button>
+  </div>
+
+  <pre><code id="codigo5"><span class="keyword">import</span> random
+
 jogadas = [<span class="string">"pedra"</span>, <span class="string">"papel"</span>, <span class="string">"tesoura"</span>]
 jog_comp = random.choice(jogadas)
 
 <span class="keyword">while</span> <span class="keyword">True</span>:
     <span class="builtin">print</span>(<span class="string">"Podes escolher: pedra, papel ou tesoura."</span>)
     jog_hum = <span class="builtin">input</span>(<span class="string">"Qual escolhes?"</span>)
+
     <span class="keyword">if</span> jog_hum <span class="keyword">in</span> jogadas:
         <span class="keyword">break</span>
     <span class="keyword">else</span>:
         <span class="builtin">print</span>(f<span class="string">"{jog_hum} não é uma jogada válida. Tenta outra vez."</span>)
         <span class="builtin">print</span>()
 
-<span class="builtin">print</span>(f<span class="string">"Eu joguei {jog_comp} e tu jogaste {jog_hum}."</span>)
-</code></pre>
+<span class="builtin">print</span>(f<span class="string">"Eu joguei {jog_comp} e tu jogaste {jog_hum}."</span>)</code></pre>
+</div>
+
+<script>
+  function copiarCodigo(id) {
+    const codigo = document.getElementById(id).innerText;
+
+    navigator.clipboard.writeText(codigo).then(() => {
+      alert("Código copiado!");
+    });
+  }
+</script>
 
 </body>
 </html>
