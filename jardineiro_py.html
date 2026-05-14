@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Aula de Python: O Cercado Perfeito</title>
+    <title>Aula de Python: O Jardineiro (Versão com Booleano)</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 1000px; margin: 0 auto; padding: 30px; background-color: #ffffff; color: #333; }
         h1 { color: #000; border-bottom: 3px solid #0078d7; padding-bottom: 10px; }
@@ -20,34 +20,36 @@
     </style>
 </head>
 <body>
-    <h1>Projeto Python: O Cercado Perfeito</h1>
-    <p>Vamos ajudar um jardineiro a descobrir qual o retângulo com 24m de perímetro que tem a <strong>maior área</strong>.</p>
+    <h1>Projeto Python: O Jardineiro (Perímetro 60m)</h1>
+    <p>Nesta atividade, vamos usar um perímetro de <strong>60 metros</strong> e uma variável de controlo para decidir quando parar de calcular.</p>
 
-    <h2>Bloco 1: Configuração Inicial</h2>
+    <h2>Bloco 1: Variáveis e Estado Inicial</h2>
+    <div class="nota">Definimos a variável <strong>continuar</strong> como <strong>True</strong> para o ciclo começar a funcionar.</div>
     <div class="container-codigo">
         <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 1</button>
-        <div class="idle-code"><span class="comment"># 1. Definir o perímetro total</span>
-perimetro = 24
-metade_perimetro = perimetro / 2
-largura = 1
-
-<span class="builtin">print</span>()
-<span class="builtin">print</span>(<span class="string">"--- EXPLORAÇÃO: O JARDINEIRO ---"</span>)</div>
+        <div class="idle-code">perimetro = 60
+largura = 0
+continuar = <span class="keyword">True</span></div>
     </div>
 
-    <h2>Bloco 2: Ciclo de Cálculo (while)</h2>
-    <div class="nota">O ciclo <strong>while</strong> vai testar todas as larguras até chegar ao meio do caminho.</div>
+    <h2>Bloco 2: O Ciclo de Exploração</h2>
+    <div class="nota">O símbolo <strong>//</strong> garante que o resultado da divisão seja um número inteiro.</div>
     <div class="container-codigo">
         <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 2</button>
-        <div class="idle-code">comprimento = metade_perimetro - largura
-
-<span class="keyword">while</span> largura <= comprimento:
+        <div class="idle-code"><span class="keyword">while</span> continuar:
+    largura = largura + 1
+    comprimento = perimetro // 2 - largura
     area = largura * comprimento
+    
     <span class="builtin">print</span>(<span class="string">"Largura:"</span>, largura, <span class="string">"| Comprimento:"</span>, comprimento, <span class="string">"| Área:"</span>, area)
     
-    <span class="comment"># Aumentar a largura para a próxima tentativa</span>
-    largura = largura + 1
-    comprimento = metade_perimetro - largura</div>
+    <span class="comment"># Se a largura chegar ao valor do comprimento, paramos</span>
+    <span class="keyword">if</span> largura >= comprimento:
+        continuar = <span class="keyword">False</span></div>
+    </div>
+
+    <div class="nota">
+        <strong>Dica de Matemática:</strong> Repara que com 60m de rede, a maior área possível é 225m² (quando o canteiro é um quadrado de 15x15).
     </div>
 
     <script>
