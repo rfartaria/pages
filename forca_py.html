@@ -41,14 +41,8 @@ HANGMANPICS = [<span class="string">'  +---+'</span>,
 palavras = [<span class="string">"python"</span>, <span class="string">"escola"</span>, <span class="string">"janela"</span>, <span class="string">"teclado"</span>]
 secreta = random.choice(palavras)
 descobertas = [<span class="string">"_"</span>] * <span class="builtin">len</span>(secreta)
-erros = 0</div>
-    </div>
-
-    <h2>Bloco 2: Imprimir a Forca por Camadas</h2>
-    <div class="nota">O segredo está no ciclo <strong>for</strong> que imprime apenas as linhas da lista até ao número de erros atual.</div>
-    <div class="container-codigo">
-        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 2</button>
-        <div class="idle-code"><span class="keyword">while</span> erros < <span class="builtin">len</span>(HANGMANPICS) <span class="keyword">and</span> <span class="string">"_"</span> <span class="keyword">in</span> descobertas:
+erros = 0
+<span class="keyword">while</span> erros < <span class="builtin">len</span>(HANGMANPICS) <span class="keyword">and</span> <span class="string">"_"</span> <span class="keyword">in</span> descobertas:
     <span class="builtin">print</span>()
     <span class="comment"># Imprime as linhas da forca de acordo com os erros</span>
     <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(erros + 1):
@@ -62,19 +56,16 @@ erros = 0</div>
             <span class="keyword">if</span> secreta[i] == palpite:
                 descobertas[i] = palpite
     <span class="keyword">else</span>:
-        erros = erros + 1</div>
-    </div>
-
-    <h2>Bloco 3: Final do Jogo</h2>
-    <div class="container-codigo">
-        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 3</button>
-        <div class="idle-code"><span class="keyword">if</span> <span class="string">"_"</span> <span class="keyword">not</span> <span class="keyword">in</span> descobertas:
+        erros = erros + 1
+        <span class="keyword">if</span> <span class="string">"_"</span> <span class="keyword">not</span> <span class="keyword">in</span> descobertas:
     <span class="builtin">print</span>(<span class="string">"\nGanhaste! A palavra era:"</span>, secreta)
 <span class="keyword">else</span>:
     <span class="builtin">print</span>(<span class="string">"\nPERDESTE!"</span>)
     <span class="keyword">for</span> linha <span class="keyword">in</span> HANGMANPICS:
-        <span class="builtin">print</span>(linha)</div>
+        <span class="builtin">print</span>(linha)
+        </div>
     </div>
+
 
     <script>
         function copiarCodigo(botao) {
