@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Aula de Python: Jogo da Forca com ASCII Art</title>
+    <title>Aula de Python: Jogo da Forca (Modo Progressivo)</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 1000px; margin: 0 auto; padding: 30px; background-color: #ffffff; color: #333; }
         h1 { color: #000; border-bottom: 3px solid #0078d7; padding-bottom: 10px; }
@@ -20,100 +20,60 @@
     </style>
 </head>
 <body>
-    <h1>Projeto Python: Jogo da Forca Visual</h1>
-    <p>Nesta versão, vamos usar <strong>ASCII Art</strong> para desenhar o boneco da forca à medida que o jogador comete erros.</p>
+    <h1>Projeto Python: Jogo da Forca Progressivo</h1>
+    <p>Nesta versão, a forca não aparece toda de uma vez. Ela é construída <strong>linha a linha</strong> à medida que erras!</p>
 
-    <h2>Bloco 1: Desenhos da Forca e Configuração</h2>
-    <div class="nota">A lista <strong>HANGMANPICS</strong> guarda os desenhos para cada etapa do jogo (de 0 a 6 erros).</div>
+    <h2>Bloco 1: A Lista de Linhas</h2>
+    <div class="nota">Cada item na lista <strong>HANGMANPICS</strong> representa agora uma linha horizontal do desenho.</div>
     <div class="container-codigo">
         <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 1</button>
         <div class="idle-code"><span class="keyword">import</span> random
 
-HANGMANPICS = [<span class="string">'''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-========='''</span>, <span class="string">'''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-========='''</span>, <span class="string">'''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-========='''</span>, <span class="string">'''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-========='''</span>, <span class="string">'''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-========='''</span>, <span class="string">'''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-========='''</span>, <span class="string">'''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-========='''</span>]
+HANGMANPICS = [<span class="string">'  +---+'</span>,
+               <span class="string">'  +---+'</span>,
+               <span class="string">'  |   |'</span>,
+               <span class="string">'  O   |'</span>,
+               <span class="string">'      |'</span>,
+               <span class="string">'      |'</span>,
+               <span class="string">'      |'</span>,
+               <span class="string">'========='</span>]
 
-palavras = [<span class="string">"python"</span>, <span class="string">"escola"</span>, <span class="string">"teclado"</span>, <span class="string">"programacao"</span>]
+palavras = [<span class="string">"python"</span>, <span class="string">"escola"</span>, <span class="string">"janela"</span>, <span class="string">"teclado"</span>]
 secreta = random.choice(palavras)
 descobertas = [<span class="string">"_"</span>] * <span class="builtin">len</span>(secreta)
 erros = 0</div>
     </div>
 
-    <h2>Bloco 2: O Ciclo Principal com Desenho</h2>
-    <div class="nota">O índice do desenho será igual ao número de <strong>erros</strong>. Se tiveres 0 erros, mostra o desenho [0].</div>
+    <h2>Bloco 2: Imprimir a Forca por Camadas</h2>
+    <div class="nota">O segredo está no ciclo <strong>for</strong> que imprime apenas as linhas da lista até ao número de erros atual.</div>
     <div class="container-codigo">
         <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 2</button>
-        <div class="idle-code"><span class="keyword">while</span> erros < 6 <span class="keyword">and</span> <span class="string">"_"</span> <span class="keyword">in</span> descobertas:
-    <span class="builtin">print</span>(HANGMANPICS[erros])
-    <span class="builtin">print</span>(<span class="string">"\nPalavra:"</span>, <span class="string">" "</span>.join(descobertas))
+        <div class="idle-code"><span class="keyword">while</span> erros < <span class="builtin">len</span>(HANGMANPICS) <span class="keyword">and</span> <span class="string">"_"</span> <span class="keyword">in</span> descobertas:
+    <span class="builtin">print</span>()
+    <span class="comment"># Imprime as linhas da forca de acordo com os erros</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(erros + 1):
+        <span class="builtin">print</span>(HANGMANPICS[i])
     
-    palpite = <span class="builtin">input</span>(<span class="string">"Escolhe uma letra: "</span>).lower()
+    <span class="builtin">print</span>(<span class="string">"\nPalavra:"</span>, <span class="string">" "</span>.join(descobertas))
+    palpite = <span class="builtin">input</span>(<span class="string">"Letra: "</span>).lower()
 
     <span class="keyword">if</span> palpite <span class="keyword">in</span> secreta:
-        <span class="builtin">print</span>(<span class="string">"Boa! A letra existe."</span>)
         <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="builtin">len</span>(secreta)):
             <span class="keyword">if</span> secreta[i] == palpite:
                 descobertas[i] = palpite
     <span class="keyword">else</span>:
-        erros = erros + 1
-        <span class="builtin">print</span>(<span class="string">"Erraste! Estás mais perto da forca..."</span>)</div>
+        erros = erros + 1</div>
     </div>
 
     <h2>Bloco 3: Final do Jogo</h2>
     <div class="container-codigo">
         <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 3</button>
         <div class="idle-code"><span class="keyword">if</span> <span class="string">"_"</span> <span class="keyword">not</span> <span class="keyword">in</span> descobertas:
-    <span class="builtin">print</span>(<span class="string">"\nPARABÉNS! Ganhaste!"</span>)
+    <span class="builtin">print</span>(<span class="string">"\nGanhaste! A palavra era:"</span>, secreta)
 <span class="keyword">else</span>:
-    <span class="builtin">print</span>(HANGMANPICS[erros])
-    <span class="builtin">print</span>(<span class="string">"\nPERDESTE! A palavra era:"</span>, secreta)</div>
+    <span class="builtin">print</span>(<span class="string">"\nPERDESTE!"</span>)
+    <span class="keyword">for</span> linha <span class="keyword">in</span> HANGMANPICS:
+        <span class="builtin">print</span>(linha)</div>
     </div>
 
     <script>
