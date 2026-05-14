@@ -1,187 +1,72 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Python: Jogo da Forca</title>
+    <title>Aula de Python: Jogo da Forca</title>
     <style>
-        /* Estilos baseados na referência rfartaria.github.io */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #ffffff;
-        }
-
-        h1 {
-            font-size: 2.2em;
-            color: #1a1a1a;
-            margin-bottom: 0.5em;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-top: 40px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 1.2em;
-            color: #444;
-        }
-
-        /* Estilo específico dos blocos de código da referência */
-        .code-header {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: -10px;
-        }
-
-        .copy-button {
-            background: #f0f0f0;
-            color: #555;
-            border: 1px solid #ddd;
-            border-bottom: none;
-            padding: 5px 15px;
-            border-radius: 5px 5px 0 0;
-            cursor: pointer;
-            font-size: 0.85em;
-            transition: background 0.2s;
-        }
-
-        .copy-button:hover {
-            background: #e0e0e0;
-        }
-
-        .code-container {
-            background-color: #1e1e1e; /* Fundo escuro como na referência */
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 5px 0 5px 5px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        pre {
-            margin: 0;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        code {
-            color: #9cdcfe; /* Azul claro para variáveis em modo escuro */
-        }
-
-        .info-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin-top: 40px;
-            border-radius: 0 5px 5px 0;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 1000px; margin: 0 auto; padding: 30px; background-color: #ffffff; color: #333; }
+        h1 { color: #000; border-bottom: 3px solid #0078d7; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 40px; background: #f0f7ff; padding: 5px 15px; border-radius: 5px; }
+        .container-codigo { position: relative; margin-bottom: 30px; }
+        .idle-code { background-color: #ffffff; color: #000000; padding: 20px; border: 1px solid #d3d3d3; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-size: 1.15em; font-weight: bold; white-space: pre; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); overflow-x: auto; }
+        .comment { color: #dd0000; font-weight: normal; }
+        .keyword { color: #ff7700; }
+        .string { color: #00aa00; }
+        .builtin { color: #900090; }
+        .btn-copiar { position: absolute; top: 10px; right: 10px; padding: 6px 15px; background-color: #0078d7; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85em; font-family: sans-serif; transition: background 0.3s; }
+        .btn-copiar:hover { background-color: #005a9e; }
+        .btn-copiar.sucesso { background-color: #28a745; }
+        .nota { background-color: #fff9c4; padding: 10px; border-left: 5px solid #fbc02d; margin: 10px 0; font-size: 0.95em; }
     </style>
 </head>
 <body>
-
     <h1>Projeto Python: Jogo da Forca</h1>
+    <p>Cria um jogo onde tens de adivinhar a palavra secreta letra a letra!</p>
 
-    <p>Vamos criar um clássico: o <strong>Jogo da Forca</strong>! O computador escolhe uma palavra ao acaso e tu tens de adivinhar as letras antes que as tuas tentativas acabem.</p>
-
-    <h2>Bloco 1: Configuração e Escolha da Palavra</h2>
-    <p>Primeiro, importamos a biblioteca <code>random</code> para o computador conseguir escolher palavras diferentes em cada jogo.</p>
-
-    <div class="code-header">
-        <button class="copy-button" onclick="copyCode(this)">Copiar Bloco 1</button>
-    </div>
-    <div class="code-container">
-        <pre><code>import random
-
-# Lista de palavras para o jogo
-palavras = ["computador", "programacao", "python", "escola", "matematica", "teclado", "janela"]
-
-# Escolher uma palavra ao acaso
-palavra_secreta = random.choice(palavras)
-letras_descobertas = []
+    <h2>Bloco 1: Preparar a Palavra</h2>
+    <div class="container-codigo">
+        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 1</button>
+        <div class="idle-code"><span class="keyword">import</span> random
+palavras = [<span class="string">"python"</span>, <span class="string">"escola"</span>, <span class="string">"teclado"</span>, <span class="string">"matematica"</span>]
+secreta = random.choice(palavras)
+descobertas = []
 tentativas = 6
 
-# Criar a lista visual da palavra (ex: _ _ _ _)
-for letra in palavra_secreta:
-    letras_descobertas.append("_")
-
-print()
-print("--- JOGO DA FORCA ---")</code></pre>
+<span class="keyword">for</span> letra <span class="keyword">in</span> secreta:
+    descobertas.append(<span class="string">"_"</span>)</div>
     </div>
 
-    <h2>Bloco 2: O Ciclo Principal e Tentativas</h2>
-    <p>Aqui usamos um ciclo <strong>while</strong>. O jogo continua enquanto o jogador tiver tentativas e ainda existirem letras escondidas (<code>"_"</code>).</p>
+    <h2>Bloco 2: O Ciclo de Jogo</h2>
+    <div class="nota">O jogo corre enquanto tiveres tentativas e ainda houver "_" por preencher.</div>
+    <div class="container-codigo">
+        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 2</button>
+        <div class="idle-code"><span class="keyword">while</span> tentativas > 0 <span class="keyword">and</span> <span class="string">"_"</span> <span class="keyword">in</span> descobertas:
+    <span class="builtin">print</span>(<span class="string">" "</span>.join(descobertas))
+    palpite = <span class="builtin">input</span>(<span class="string">"Letra: "</span>).lower()
 
-    <div class="code-header">
-        <button class="copy-button" onclick="copyCode(this)">Copiar Bloco 2</button>
-    </div>
-    <div class="code-container">
-        <pre><code>while tentativas > 0 and "_" in letras_descobertas:
-    print("\n" + " ".join(letras_descobertas))
-    print(f"Tentativas restantes: {tentativas}")
-    
-    palpite = input("Digita uma letra: ").lower()
-
-    if palpite in palavra_secreta:
-        print(f"Boa! A letra '{palpite}' existe na palavra.")
-        # Atualizar as letras descobertas
-        for i in range(len(palavra_secreta)):
-            if palavra_secreta[i] == palpite:
-                letras_descobertas[i] = palpite
-    else:
-        tentativas = tentativas - 1
-        print(f"Erraste! A letra '{palpite}' não existe.")</code></pre>
-    </div>
-
-    <h2>Bloco 3: Resultado Final</h2>
-    <p>Finalmente, verificamos se o jogador conseguiu descobrir todas as letras ou se as tentativas esgotaram.</p>
-
-    <div class="code-header">
-        <button class="copy-button" onclick="copyCode(this)">Copiar Bloco 3</button>
-    </div>
-    <div class="code-container">
-        <pre><code>if "_" not in letras_descobertas:
-    print("\nPARABÉNS! Ganhaste o jogo!")
-    print(f"A palavra era: {palavra_secreta}")
-else:
-    print("\nFicaste sem tentativas!")
-    print(f"A palavra secreta era: {palavra_secreta}")
-
-print("Até à próxima!")</code></pre>
-    </div>
-
-    <div class="info-box">
-        <strong>Notas para a Aula:</strong>
-        <ul>
-            <li><strong>Variáveis:</strong> Usamos <code>tentativas</code> para controlar o estado do jogo.</li>
-            <li><strong>Lógica:</strong> O comando <code>"".join()</code> ajuda a mostrar a lista de letras de forma bonita.</li>
-            <li><strong>Desafio:</strong> Tenta adicionar uma verificação para não perderes tentativas se repetires uma letra que já tinhas dito!</li>
-        </ul>
+    <span class="keyword">if</span> palpite <span class="keyword">in</span> secreta:
+        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="builtin">len</span>(secreta)):
+            <span class="keyword">if</span> secreta[i] == palpite:
+                descobertas[i] = palpite
+    <span class="keyword">else</span>:
+        tentativas -= 1
+        <span class="builtin">print</span>(<span class="string">"Erraste! Restam:"</span>, tentativas)</div>
     </div>
 
     <script>
-        function copyCode(button) {
-            const container = button.parentElement.nextElementSibling;
-            const code = container.querySelector('code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const originalText = button.innerText;
-                button.innerText = "Copiado!";
+        function copiarCodigo(botao) {
+            const codigoDiv = botao.nextElementSibling;
+            const textoParaCopiar = codigoDiv.innerText;
+            navigator.clipboard.writeText(textoParaCopiar).then(() => {
+                const textoOriginal = botao.innerText;
+                botao.innerText = "Copiado!";
+                botao.classList.add("sucesso");
                 setTimeout(() => {
-                    button.innerText = originalText;
+                    botao.innerText = textoOriginal;
+                    botao.classList.remove("sucesso");
                 }, 2000);
             });
         }
     </script>
-
 </body>
 </html>

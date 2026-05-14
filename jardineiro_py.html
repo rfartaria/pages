@@ -1,195 +1,69 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Python: O Cercado Perfeito</title>
+    <title>Aula de Python: O Cercado Perfeito</title>
     <style>
-        /* Estilos idênticos à referência rfartaria.github.io */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #ffffff;
-        }
-
-        h1 {
-            font-size: 2.2em;
-            color: #1a1a1a;
-            margin-bottom: 0.5em;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-top: 40px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 1.2em;
-            color: #444;
-        }
-
-        /* Estilo dos blocos de código e botões de cópia */
-        .code-header {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: -10px;
-        }
-
-        .copy-button {
-            background: #f0f0f0;
-            color: #555;
-            border: 1px solid #ddd;
-            border-bottom: none;
-            padding: 5px 15px;
-            border-radius: 5px 5px 0 0;
-            cursor: pointer;
-            font-size: 0.85em;
-            transition: background 0.2s;
-        }
-
-        .copy-button:hover {
-            background: #e0e0e0;
-        }
-
-        .code-container {
-            background-color: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 5px 0 5px 5px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        pre {
-            margin: 0;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        code {
-            color: #9cdcfe;
-        }
-
-        .info-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin-top: 40px;
-            border-radius: 0 5px 5px 0;
-        }
-
-        .image-placeholder {
-            text-align: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: #f0f0f0;
-            border: 2px dashed #ccc;
-            color: #666;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 1000px; margin: 0 auto; padding: 30px; background-color: #ffffff; color: #333; }
+        h1 { color: #000; border-bottom: 3px solid #0078d7; padding-bottom: 10px; }
+        h2 { color: #2c3e50; margin-top: 40px; background: #f0f7ff; padding: 5px 15px; border-radius: 5px; }
+        .container-codigo { position: relative; margin-bottom: 30px; }
+        .idle-code { background-color: #ffffff; color: #000000; padding: 20px; border: 1px solid #d3d3d3; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-size: 1.15em; font-weight: bold; white-space: pre; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); overflow-x: auto; }
+        .comment { color: #dd0000; font-weight: normal; }
+        .keyword { color: #ff7700; }
+        .string { color: #00aa00; }
+        .builtin { color: #900090; }
+        .btn-copiar { position: absolute; top: 10px; right: 10px; padding: 6px 15px; background-color: #0078d7; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85em; font-family: sans-serif; transition: background 0.3s; }
+        .btn-copiar:hover { background-color: #005a9e; }
+        .btn-copiar.sucesso { background-color: #28a745; }
+        .nota { background-color: #fff9c4; padding: 10px; border-left: 5px solid #fbc02d; margin: 10px 0; font-size: 0.95em; }
     </style>
 </head>
 <body>
-
     <h1>Projeto Python: O Cercado Perfeito</h1>
+    <p>Vamos ajudar um jardineiro a descobrir qual o retângulo com 24m de perímetro que tem a <strong>maior área</strong>.</p>
 
-    <p>Nesta atividade, vamos ajudar um jardineiro a descobrir todas as formas possíveis de construir um canteiro retangular usando exatamente <strong>24 metros de rede</strong>, para encontrar a que tem a maior área para plantar flores.</p>
-
-    <div class="image-placeholder">
-        [Inserir aqui imagem de um retângulo com Largura e Comprimento]
-    </div>
-
-    <h2>Bloco 1: Configuração e Variáveis Iniciais</h2>
-    <p>Primeiro, definimos o nosso perímetro e calculamos a "soma mágica" (metade do perímetro). Como o perímetro é 24, a soma da largura com o comprimento tem de ser 12.</p>
-
-    <div class="code-header">
-        <button class="copy-button" onclick="copyCode(this)">Copiar Bloco 1</button>
-    </div>
-    <div class="code-container">
-        <pre><code># 1. Definir o perímetro total da rede
-perimetro_total = 24
-metade_perimetro = perimetro_total / 2
-
-# Começamos com a largura mínima (1 metro)
+    <h2>Bloco 1: Configuração Inicial</h2>
+    <div class="container-codigo">
+        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 1</button>
+        <div class="idle-code"><span class="comment"># 1. Definir o perímetro total</span>
+perimetro = 24
+metade_perimetro = perimetro / 2
 largura = 1
 
-print()
-print("--- EXPLORAÇÃO: O JARDINEIRO ---")
-print(f"Rede disponível: {perimetro_total} metros")</code></pre>
+<span class="builtin">print</span>()
+<span class="builtin">print</span>(<span class="string">"--- EXPLORAÇÃO: O JARDINEIRO ---"</span>)</div>
     </div>
 
-    <h2>Bloco 2: O Ciclo de Cálculo (while)</h2>
-    <p>Aqui usamos um ciclo <strong>while</strong> para testar as várias larguras possíveis. O ciclo continua enquanto a largura for menor ou igual ao comprimento para evitarmos repetir retângulos que já vimos (ex: 2x10 e 10x2).</p>
+    <h2>Bloco 2: Ciclo de Cálculo (while)</h2>
+    <div class="nota">O ciclo <strong>while</strong> vai testar todas as larguras até chegar ao meio do caminho.</div>
+    <div class="container-codigo">
+        <button class="btn-copiar" onclick="copiarCodigo(this)">Copiar Bloco 2</button>
+        <div class="idle-code">comprimento = metade_perimetro - largura
 
-    <div class="code-header">
-        <button class="copy-button" onclick="copyCode(this)">Copiar Bloco 2</button>
-    </div>
-    <div class="code-container">
-        <pre><code>print()
-print("================================")
-print("Listagem de dimensões possíveis:")
-
-# Calculamos o comprimento inicial
-comprimento = metade_perimetro - largura
-
-while largura <= comprimento:
-    # Calcular a área do retângulo atual
+<span class="keyword">while</span> largura <= comprimento:
     area = largura * comprimento
+    <span class="builtin">print</span>(<span class="string">"Largura:"</span>, largura, <span class="string">"| Comprimento:"</span>, comprimento, <span class="string">"| Área:"</span>, area)
     
-    print(f"Largura: {largura}m | Comprimento: {comprimento}m | Área: {area}m2")
-    
-    # Passo importante: aumentamos a largura para a próxima tentativa
+    <span class="comment"># Aumentar a largura para a próxima tentativa</span>
     largura = largura + 1
-    
-    # Atualizamos o comprimento para a nova largura
-    comprimento = metade_perimetro - largura</code></pre>
-    </div>
-
-    <h2>Bloco 3: Conclusão e Dica Matemática</h2>
-    <p>Este bloco final ajuda-nos a refletir sobre os resultados. Qual foi o retângulo que deu a maior área?</p>
-
-    <div class="code-header">
-        <button class="copy-button" onclick="copyCode(this)">Copiar Bloco 3</button>
-    </div>
-    <div class="code-container">
-        <pre><code>print("================================")
-print("Fim da exploração!")
-print()
-print("DICA MATEMÁTICA:")
-print("Repara que quanto mais 'quadrado' é o retângulo,")
-print("maior é a área que consegues obter!")</code></pre>
-    </div>
-
-    <div class="info-box">
-        <strong>Notas para a Aula:</strong>
-        <ul>
-            <li><strong>Matemática:</strong> Trabalhamos os conceitos de perímetro ($P = 2l + 2c$) e área ($A = l \times c$).</li>
-            <li><strong>Programação:</strong> Vimos como o ciclo <code>while</code> automatiza o processo de "tentativa e erro".</li>
-            <li><strong>Desafio Extra:</strong> O que acontece se a rede tiver 25 metros? Tenta usar <code>largura = largura + 0.5</code>.</li>
-        </ul>
+    comprimento = metade_perimetro - largura</div>
     </div>
 
     <script>
-        function copyCode(button) {
-            const container = button.parentElement.nextElementSibling;
-            const code = container.querySelector('code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const originalText = button.innerText;
-                button.innerText = "Copiado!";
+        function copiarCodigo(botao) {
+            const codigoDiv = botao.nextElementSibling;
+            const textoParaCopiar = codigoDiv.innerText;
+            navigator.clipboard.writeText(textoParaCopiar).then(() => {
+                const textoOriginal = botao.innerText;
+                botao.innerText = "Copiado!";
+                botao.classList.add("sucesso");
                 setTimeout(() => {
-                    button.innerText = originalText;
+                    botao.innerText = textoOriginal;
+                    botao.classList.remove("sucesso");
                 }, 2000);
             });
         }
     </script>
-
 </body>
 </html>
